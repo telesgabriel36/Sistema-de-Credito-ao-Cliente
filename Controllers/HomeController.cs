@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Projeto_Credito_Cliente.Models;
@@ -15,6 +16,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+
+
         return View();
     }
 
