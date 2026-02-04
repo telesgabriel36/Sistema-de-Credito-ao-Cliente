@@ -1,7 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Projeto_Credito_Cliente.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connection = builder.Configuration.GetConnectionString("ConnectionBd");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+options.UseSqlServer(connection));
 
 var app = builder.Build();
 
