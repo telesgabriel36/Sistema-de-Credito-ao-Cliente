@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projeto_Credito_Cliente.Data;
 
@@ -11,9 +12,11 @@ using Projeto_Credito_Cliente.Data;
 namespace Projeto_Credito_Cliente.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260212134312_Exclusão da propriedade Nome de Entity + Adição das props Data_Cadastro + Data_Atualizacao")]
+    partial class ExclusãodapropriedadeNomedeEntityAdiçãodaspropsData_CadastroData_Atualizacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

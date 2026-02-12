@@ -8,7 +8,12 @@ public abstract class Entity
     [Key]
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "O campo Nome deve ser preenchido.")]
-    [DisplayName("Nome")]
-    public String Nome { get; set; }
+    [Required]
+    [DisplayName("Data de Cadastro")]
+    public DateTime Data_Cadastro { get; set; }
+
+    [Required]
+    [DisplayName("Data última atualização")]
+    [DataType(DataType.DateTime)]
+    public DateTime Data_Atualizacao { get; set; }
 }

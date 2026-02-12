@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Projeto_Credito_Cliente.Data;
+using Projeto_Credito_Cliente.Models;
+using Projeto_Credito_Cliente.Repositories.Implementations;
+using Projeto_Credito_Cliente.Repositories.Infaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,9 @@ var connection = builder.Configuration.GetConnectionString("ConnectionBd");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(connection));
+
+builder.Services.AddScoped<IRepositoryBase<Cliente>, RepositoryCliente>();
+
 
 var app = builder.Build();
 

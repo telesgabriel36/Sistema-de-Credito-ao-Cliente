@@ -5,6 +5,10 @@ namespace Projeto_Credito_Cliente.Models;
 
 public class Cliente : Entity
 {
+
+    [Required(ErrorMessage = "O campo Nome deve ser preenchido.")]
+    public String Nome { get; set; }
+
     [Required(ErrorMessage = "O campo Cpf deve ser preenchido.")]
     [DisplayName("Cpf")]
     [StringLength(maximumLength: 11, MinimumLength = 11)]
