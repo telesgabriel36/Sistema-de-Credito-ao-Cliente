@@ -1,0 +1,56 @@
+using Projeto_Credito_Cliente.Models;
+using Projeto_Credito_Cliente.Repositories.Implementations;
+using Projeto_Credito_Cliente.Repositories.Infaces;
+using Projeto_Credito_Cliente.Services.Interfaces;
+
+namespace Projeto_Credito_Cliente.Services.Implementations;
+
+public class ServiceCliente : IServiceCliente
+{
+    private readonly RepositoryCliente _CliRepo;
+
+    public ServiceCliente(RepositoryCliente _cliRepo)
+    {
+        _CliRepo = _cliRepo;
+    }
+
+    public async Task<IEnumerable<Cliente>> GetAllEntityes()
+    {
+        return await _CliRepo.GetAllAsync();
+    }
+
+    public async Task<Cliente> GetClienteByCpf(string cpf)
+    {
+        return await _CliRepo.GetByCpfAsync(cpf);
+    }
+
+    public async Task<Cliente> GetClienteByEmail(string email)
+    {
+        return await _CliRepo.GetByEmail(email);
+    }
+
+    public async Task<Cliente> GetClienteByName(string nome)
+    {
+        return await _CliRepo.GetByNameAsync(nome);
+    }
+
+    public async Task<Cliente> GetEntityById(int id)
+    {
+        return await _CliRepo.GetByIdAsync(id);
+    }
+
+    public async Task<Cliente> RegisterEntity(Cliente cliente)
+    {
+        return await _CliRepo.AddAsync(cliente);
+    }
+
+    public async Task<bool> RemoveEntity(int id)
+    {
+        return await _CliRepo.DeleteAsync(id);
+    }
+
+    public async Task<bool> UpdateEntity(Cliente cliente)
+    {
+        return await _CliRepo.UpdateAsync(cliente);
+    }
+}
