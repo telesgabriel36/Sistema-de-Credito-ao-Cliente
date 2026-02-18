@@ -7,9 +7,9 @@ namespace Projeto_Credito_Cliente.Services.Implementations;
 
 public class ServiceCliente : IServiceCliente
 {
-    private readonly RepositoryCliente _CliRepo;
+    private readonly IRepositoryCliente _CliRepo;
 
-    public ServiceCliente(RepositoryCliente _cliRepo)
+    public ServiceCliente(IRepositoryCliente _cliRepo)
     {
         _CliRepo = _cliRepo;
     }

@@ -5,7 +5,7 @@ using Projeto_Credito_Cliente.Repositories.Infaces;
 
 namespace Projeto_Credito_Cliente.Repositories.Implementations;
 
-public class RepositoryCliente : RepositoryBase<Cliente>, IRepositoryBase<Cliente>
+public class RepositoryCliente : RepositoryBase<Cliente>, IRepositoryCliente
 {
 
     private readonly AppDbContext _context;

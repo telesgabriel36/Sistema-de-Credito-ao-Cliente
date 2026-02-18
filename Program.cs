@@ -15,7 +15,7 @@ var connection = builder.Configuration.GetConnectionString("ConnectionBd");
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(connection));
 
-builder.Services.AddScoped<IRepositoryBase<Cliente>, RepositoryCliente>();
+builder.Services.AddScoped<IRepositoryCliente, IRepositoryCliente>();
 
 
 var app = builder.Build();
