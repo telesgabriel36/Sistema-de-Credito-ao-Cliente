@@ -4,6 +4,8 @@ using Projeto_Credito_Cliente.Data;
 using Projeto_Credito_Cliente.Models;
 using Projeto_Credito_Cliente.Repositories.Implementations;
 using Projeto_Credito_Cliente.Repositories.Infaces;
+using Projeto_Credito_Cliente.Services.Implementations;
+using Projeto_Credito_Cliente.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,9 @@ var connection = builder.Configuration.GetConnectionString("ConnectionBd");
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(connection));
 
-builder.Services.AddScoped<IRepositoryCliente, IRepositoryCliente>();
+builder.Services.AddScoped<IRepositoryCliente, RepositoryCliente>();
+
+builder.Services.AddScoped<IServiceCliente, ServiceCliente>();
 
 
 var app = builder.Build();
