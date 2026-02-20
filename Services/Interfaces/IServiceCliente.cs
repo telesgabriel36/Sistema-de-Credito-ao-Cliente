@@ -1,10 +1,12 @@
 using Projeto_Credito_Cliente.Models;
+using Projeto_Credito_Cliente.Utils;
+using Projeto_Credito_Cliente.ViewModels;
 
 namespace Projeto_Credito_Cliente.Services.Interfaces;
 
 public interface IServiceCliente
 {
-    Task<Cliente> RegisterEntity(Cliente cliente);
+    Task<ServiceResult<ClienteViewModel>> RegisterEntity(Cliente cliente);
     Task<IEnumerable<Cliente>> GetAllEntityes();
     Task<Cliente> GetEntityById(int id);
     Task<bool> UpdateEntity(Cliente cliente);

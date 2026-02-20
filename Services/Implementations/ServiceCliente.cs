@@ -3,6 +3,7 @@ using Projeto_Credito_Cliente.Repositories.Implementations;
 using Projeto_Credito_Cliente.Repositories.Infaces;
 using Projeto_Credito_Cliente.Services.Interfaces;
 using Projeto_Credito_Cliente.Utils;
+using Projeto_Credito_Cliente.ViewModels;
 
 namespace Projeto_Credito_Cliente.Services.Implementations;
 
@@ -40,13 +41,32 @@ public class ServiceCliente : IServiceCliente
         return await _CliRepo.GetByIdAsync(id);
     }
 
-    public async Task<Cliente> RegisterEntity(Cliente cliente)
+    public async Task<ServiceResult<ClienteViewModel>> RegisterEntity(Cliente cliente)
     {
         cliente.Data_Cadastro = DateTime.Now;
 
         cliente.Data_Atualizacao = DateTime.Now;
 
-        return await _CliRepo.AddAsync(cliente);
+        if (await _CliRepo.GetByCpfAsync(cliente.Cpf) != null)
+        {
+            return ServiceResult<ClienteViewModel>.Fail("O Cpf informado já está cadastrado no sistema.");
+        }
+
+        if (await _CliRepo.GetByEmail(cliente.Contato.Email) != null)
+        {
+            return ServiceResult<ClienteViewModel>.Fail("O Email informado já está casdatrado no sistema.");
+        }
+
+        var clienteCadastrado = await _CliRepo.AddAsync(cliente);
+
+        if (clienteCadastrado == null)
+        {
+            return ServiceResult<ClienteViewModel>.Fail();
+        }
+
+        var clienteDto = new ClienteViewModel(clienteCadastrado.Nome);
+
+        return ServiceResult<ClienteViewModel>.Ok(clienteDto);
     }
 
     public async Task<bool> RemoveEntity(int id)

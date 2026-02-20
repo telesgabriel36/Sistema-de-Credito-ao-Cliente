@@ -1,7 +1,20 @@
 @model Projeto_Credito_Cliente.Models.Cliente
 
-<h1 class="text text-center">Cadastrar Cliente</h1>
+@if (ViewBag.Fail != null)
+{
+    <div class="Alert text-center">
+        <h3 class="alert-danger">@ViewBag.Fail</h3>
+    </div>
+}
 
+@if (TempData["Success"] != null)
+{
+    <div class="Alert text-center">
+        <h3 class="alert-success">@TempData["Success"].ToString()</h3>
+    </div>
+}
+
+<h1 class="text text-center">Cadastrar Cliente</h1>
 
 <form asp-action="Create" method="post">
 
@@ -47,7 +60,8 @@
 
     <div class="mb-3">
         <label asp-for="Endereco.Cep"></label>
-        <input asp-for="Endereco.Cep" class="form-control" placeholder="Insira Apenas os números, sem pontos ou traço." />
+        <input asp-for="Endereco.Cep" class="form-control"
+               placeholder="Insira Apenas os números, sem pontos ou traço." />
         <span asp-validation-for="Endereco.Cep" class="text text-danger"></span>
     </div>
 

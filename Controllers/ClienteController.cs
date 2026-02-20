@@ -46,11 +46,15 @@ public class ClienteController : Controller
 
         var clienteCadastrado = await _serviceCli.RegisterEntity(cliente);
 
-        if (clienteCadastrado == null)
+        if (!clienteCadastrado.Success)
         {
+            ViewBag.Fail = (clienteCadastrado.Message == null) ?
+            "Não foi possível realizar o cadastro. Tente novamente" : clienteCadastrado.Message;
+
             return View(cliente);
         }
 
+        TempData["Success"] = $"Cliente Cadastrado com sucesso! Cliente: {clienteCadastrado.Object.Nome}";
 
         return RedirectToAction("Index");
     }

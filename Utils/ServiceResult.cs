@@ -8,15 +8,15 @@ public class ServiceResult<T>
 
     public string Message { get; set; }
 
-    public bool Result { get; set; }
+    public bool Success { get; set; }
 
-    public static ServiceResult<T> Success(T obj, string message = null)
+    public static ServiceResult<T> Ok(T obj, string message = null)
     {
         return new()
         {
             Object = obj,
             Message = message,
-            Result = true,
+            Success = true,
         };
     }
 
@@ -25,7 +25,7 @@ public class ServiceResult<T>
         return new()
         {
             Message = message,
-            Result = false,
+            Success = false,
         };
     }
 
