@@ -2,6 +2,7 @@ using Projeto_Credito_Cliente.Models;
 using Projeto_Credito_Cliente.Repositories.Implementations;
 using Projeto_Credito_Cliente.Repositories.Infaces;
 using Projeto_Credito_Cliente.Services.Interfaces;
+using Projeto_Credito_Cliente.Utils;
 
 namespace Projeto_Credito_Cliente.Services.Implementations;
 
@@ -41,6 +42,10 @@ public class ServiceCliente : IServiceCliente
 
     public async Task<Cliente> RegisterEntity(Cliente cliente)
     {
+        cliente.Data_Cadastro = DateTime.Now;
+
+        cliente.Data_Atualizacao = DateTime.Now;
+
         return await _CliRepo.AddAsync(cliente);
     }
 

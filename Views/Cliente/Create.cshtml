@@ -1,0 +1,82 @@
+@model Projeto_Credito_Cliente.Models.Cliente
+
+<h1 class="text text-center">Cadastrar Cliente</h1>
+
+
+<form asp-action="Create" method="post">
+
+    <div class="mb-3">
+        <label asp-for="Nome"></label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Cpf"></label>
+        <input asp-for="Cpf" class="form-control" placeholder="Digite somente os números, sem pontos ou traços." />
+        <span asp-validation-for="Cpf" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Data_Nascimento"></label>
+        <input asp-for="Data_Nascimento" class="form-control" />
+        <span asp-validation-for="Data_Nascimento" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-4">
+        <h2 class="text-center">Endereços</h2>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Endereco.Rua"></label>
+        <input asp-for="Endereco.Rua" class="form-control" />
+        <span asp-validation-for="Endereco.Rua" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Endereco.Bairro"></label>
+        <input asp-for="Endereco.Bairro" class="form-control" />
+        <span asp-validation-for="Endereco.Bairro" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Endereco.Cidade"></label>
+        <input asp-for="Endereco.Cidade" class="form-control" />
+        <span asp-validation-for="Endereco.Cidade" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Endereco.Cep"></label>
+        <input asp-for="Endereco.Cep" class="form-control" placeholder="Insira Apenas os números, sem pontos ou traço." />
+        <span asp-validation-for="Endereco.Cep" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Endereco.Estado"></label>
+        <input asp-for="Endereco.Estado" class="form-control" />
+        <span asp-validation-for="Endereco.Estado" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-4">
+        <h2 class="text-center">Contatos</h2>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Contato.Email"></label>
+        <input asp-for="Contato.Email" class="form-control" />
+        <span asp-validation-for="Contato.Email" class="text text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Contato.Telefone"></label>
+        <input asp-for="Contato.Telefone" class="form-control" placeholder="Insira apenas os números." />
+        <span asp-validation-for="Contato.Telefone" class="text text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Cadastrar
+    </button>
+
+    <a asp-controller="Home" asp-action="Index" class="btn btn-danger">cancelar</a>
+
+</form>
