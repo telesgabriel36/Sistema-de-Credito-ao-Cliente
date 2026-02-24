@@ -3,14 +3,14 @@
 @if (ViewBag.Fail != null)
 {
     <div class="Alert text-center">
-        <h3 class="alert-danger">@ViewBag.Fail</h3>
+        <p class="alert-danger">@ViewBag.Fail</p>
     </div>
 }
 
 @if (TempData["Success"] != null)
 {
     <div class="Alert text-center">
-        <h3 class="alert-success">@TempData["Success"].ToString()</h3>
+        <p class="alert-success">@TempData["Success"].ToString()</p>
     </div>
 }
 

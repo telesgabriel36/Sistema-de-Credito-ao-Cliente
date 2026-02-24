@@ -18,6 +18,7 @@ public class Cliente : Entity
     [DataType(DataType.Date)]
     public DateOnly Data_Nascimento { get; set; }
 
+    [Required]
     public Endereco Endereco { get; set; }
 
     [Required]

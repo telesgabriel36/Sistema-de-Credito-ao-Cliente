@@ -1,0 +1,35 @@
+@model Projeto_Credito_Cliente.ViewModels.ClienteIndexViewModel;
+
+<h1 class="Text texte-center">Clientes</h1>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cpf</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"></th>
+            <td>@Model.Nome</td>
+            <td>@Model.Cpf</td>
+            <td>@Model.Bairro</td>
+            <td>@Model.Cidade</td>
+            <td>@Model.Bairro</td>
+            <td>@Model.Telefone</td>
+            <td>
+                <a class="btn btn-info">Visualizar</a>
+                <a class="btn btn-primary">Alterar</a>
+                <a class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+    </tbody>
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Voltar</a>
+</table>

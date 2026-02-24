@@ -1,8 +1,10 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using Projeto_Credito_Cliente.Models;
 using Projeto_Credito_Cliente.Services.Interfaces;
+using Projeto_Credito_Cliente.ViewModels;
 
 namespace Projeto_Credito_Cliente.Controllers;
 
@@ -22,7 +24,23 @@ public class ClienteController : Controller
     {
         var clientes = await _serviceCli.GetAllEntityes();
 
-        return View(clientes);
+        var clientesDto = new List<ClienteIndexViewModel>();
+
+        foreach (var item in clientes)
+        {
+
+            clientesDto.Add(new ClienteIndexViewModel
+            (
+                item.Nome,
+                item.Cpf,
+                item.Endereco.Bairro,
+                item.Endereco.Cidade,
+                item.Contato.Telefone,
+                item.Contato.Email
+            ));
+        }
+
+        return View(clientesDto);
     }
 
 
