@@ -24,13 +24,22 @@ public class ClienteController : Controller
     {
         var clientes = await _serviceCli.GetAllEntityes();
 
+        if (!clientes.Success)
+        {
+            ViewBag.Fail = (clientes.Message == null) ?
+            "Não foi possível carregar as informações." :
+            clientes.Message;
+            return NotFound();
+        }
+
         var clientesDto = new List<ClienteIndexViewModel>();
 
-        foreach (var item in clientes)
+        foreach (var item in clientes.Object)
         {
 
             clientesDto.Add(new ClienteIndexViewModel
             (
+                item.Id,
                 item.Nome,
                 item.Cpf,
                 item.Endereco.Bairro,
@@ -98,10 +107,10 @@ public class ClienteController : Controller
 
         if (clienteExiste == null)
         {
-            return RedirectToAction("Index");
+            return NotFound();
         }
 
-        return View(clienteExiste);
+        return View("Create", clienteExiste);
     }
 
     [HttpPost]

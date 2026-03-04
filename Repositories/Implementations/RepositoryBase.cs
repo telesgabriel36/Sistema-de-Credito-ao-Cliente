@@ -1,5 +1,7 @@
 
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.VisualBasic;
 using Projeto_Credito_Cliente.Data;
 using Projeto_Credito_Cliente.Models;
@@ -18,6 +20,13 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
         _context = context;
 
     }
+
+    //Método de montar a querry
+    public IQueryable<TEntity> Query()
+    {
+        return _dbset;
+    }
+
     public async Task<TEntity> AddAsync(TEntity entity)
     {
         await _dbset.AddAsync(entity);
@@ -35,9 +44,11 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
 
     }
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync()
+    //Tentar ver uma forma de melhorar o tipo de retorno da Expression
+    public async Task<IEnumerable<TEntity>> GetAllAsync(IQueryable<TEntity> query)
     {
-        return await _dbset.ToListAsync();
+
+        return await query.ToListAsync();
     }
 
     public async Task<TEntity> GetByIdAsync(int id)

@@ -1,3 +1,6 @@
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Projeto_Credito_Cliente.Models;
 using Projeto_Credito_Cliente.Repositories.Implementations;
 using Projeto_Credito_Cliente.Repositories.Infaces;
@@ -16,9 +19,26 @@ public class ServiceCliente : IServiceCliente
         _CliRepo = _cliRepo;
     }
 
-    public async Task<IEnumerable<Cliente>> GetAllEntityes()
+    public async Task<ServiceResult<IEnumerable<Cliente>>> GetAllEntityes()
     {
-        return await _CliRepo.GetAllAsync();
+
+        var query = _CliRepo.Query();
+
+        try
+        {
+            
+            var clientes = await _CliRepo.GetAllAsync(query.
+            Include(c => c.Endereco).
+            Include(c => c.Contato).
+            OrderBy(c => c.Nome));
+
+            return ServiceResult<IEnumerable<Cliente>>.Ok(clientes);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return ServiceResult<IEnumerable<Cliente>>.Fail();
+        }
     }
 
     public async Task<Cliente> GetClienteByCpf(string cpf)

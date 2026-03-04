@@ -1,7 +1,8 @@
 namespace Projeto_Credito_Cliente.ViewModels;
 
 public record ClienteIndexViewModel
-(string Nome,
+(int Id,
+string Nome,
 string Cpf,
 string Bairro,
 string Cidade,

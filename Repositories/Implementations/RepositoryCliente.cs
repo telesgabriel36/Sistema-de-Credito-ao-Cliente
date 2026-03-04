@@ -28,4 +28,5 @@ public class RepositoryCliente : RepositoryBase<Cliente>, IRepositoryCliente
     {
         return await _context.Clientes.FirstOrDefaultAsync(c => c.Contato.Email == email);
     }
+
 }
